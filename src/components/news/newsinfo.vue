@@ -15,6 +15,8 @@
 </template>
 
 <script>
+// 实现api域名的动态绑定 因为在开发中可能会有测试域名 开发域名 和上线域名
+import common from '../../common/common.js';
 	export default{
 		data(){
 			return{
@@ -29,7 +31,7 @@
 		},
 		methods:{
 			getInfo(){
-				var url = 'http://182.254.146.100:8899/api/getnew/' + this.id;
+				var url = common.apidomain+'/api/getnew/' + this.id;
 				this.$http.get(url).then(function(res){
 					var data = res.body;
 					if(data.status!=0){

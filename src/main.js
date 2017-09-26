@@ -19,10 +19,10 @@ Vue.filter('datefmt', function(input, fmtstring){
 })
 
 // 5. 导入路由规则对应的组件对象
-import home from './components/home/home.vue';
-import shopcar from './components/shopcar/shopCar.vue';
-import newslist from './components/news/newslist.vue';
-import newsinfo from './components/news/newsinfo.vue';
+import home from './components/home/home.vue'; // 首页
+import shopcar from './components/shopcar/shopCar.vue';// 购物车
+import newslist from './components/news/newslist.vue';//新闻资讯列表
+import newsinfo from './components/news/newsinfo.vue';// 新闻资讯列表信息
 // 6. 定义路由规则
 var router1 = new vueRouter({
 	routes:[

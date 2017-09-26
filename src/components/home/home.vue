@@ -53,13 +53,13 @@
 </template>
 
 <script>
+// 实现api域名的动态绑定 因为在开发中可能会有测试域名 开发域名 和上线域名
+import common from '../../common/common.js';
 import { Toast } from 'mint-ui';
 export default {
     data(){
         return {
-            listImg : [
-                
-            ]
+            listImg : []
         }
     },
     created : function(){
@@ -69,7 +69,7 @@ export default {
     methods : {
         getImgs(){
             // 实现轮播组件中的数据请求
-            var url = 'http://182.254.146.100:8899/api/getlunbo';
+            var url = common.apidomain+'/api/getlunbo';
             this.$http.get(url).then(function(res){
                 var data = res.body;
                 // 错误处理
