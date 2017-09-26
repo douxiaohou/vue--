@@ -23,6 +23,7 @@ import home from './components/home/home.vue'; // 首页
 import shopcar from './components/shopcar/shopCar.vue';// 购物车
 import newslist from './components/news/newslist.vue';//新闻资讯列表
 import newsinfo from './components/news/newsinfo.vue';// 新闻资讯列表信息
+import photoshare from './components/photoshare/photoshare.vue';// 图片分享列表
 // 6. 定义路由规则
 var router1 = new vueRouter({
 	routes:[
@@ -30,6 +31,7 @@ var router1 = new vueRouter({
 		{path:'/shopcar',component:shopcar},
 		{path:'/news/newslist',component:newslist},
 		{path:'/news/newsinfo/:id1',component:newsinfo},
+		{path:'/photo/photoshare/',component:photoshare}
 	]
  });
 

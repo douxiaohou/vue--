@@ -27,7 +27,7 @@
 
 <script>
 // 实现api域名的动态绑定 因为在开发中可能会有测试域名 开发域名 和上线域名
-import common from '../../common/common.js';
+	import common from '../../common/common.js';
 	import { Toast } from 'mint-ui';
 	export default{
 		data(){
