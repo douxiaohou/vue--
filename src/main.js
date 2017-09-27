@@ -3,9 +3,12 @@ import Vue from 'vue';
 
 // 2 导入App.vue的vue对象
 import App from './myapp.vue';
-
+//导入vue 中ajax请求数据插件
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
+// 导入图片预览自动放大插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
 
 // 3 将vue-router集成到这个项目中来
 import vueRouter from 'vue-router';
@@ -24,14 +27,20 @@ import shopcar from './components/shopcar/shopCar.vue';// 购物车
 import newslist from './components/news/newslist.vue';//新闻资讯列表
 import newsinfo from './components/news/newsinfo.vue';// 新闻资讯列表信息
 import photoshare from './components/photoshare/photoshare.vue';// 图片分享列表
+import photoinfos from './components/photoshare/photoinfos.vue';// 图片分享详细信息
+import goodslist from './components/goods/goodslist.vue';// 图片分享详细信息
+
 // 6. 定义路由规则
 var router1 = new vueRouter({
 	routes:[
+		{path:'/',component:home}, 
 		{path:'/home',component:home}, 
 		{path:'/shopcar',component:shopcar},
 		{path:'/news/newslist',component:newslist},
 		{path:'/news/newsinfo/:id1',component:newsinfo},
-		{path:'/photo/photoshare/',component:photoshare}
+		{path:'/photo/photoshare/',component:photoshare},
+		{path:'/photo/photoinfo/:imgid',component:photoinfos},
+		{path:'/goods/goodslist/',component:goodslist}
 	]
  });
 

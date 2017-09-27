@@ -2,7 +2,7 @@
 <!--shop component-->
 <template>
 <!--根元素-->
-	<div>
+	<div id="temp">
 		<div>
 			<span>购物车</span><br/>
 			<span>购物车</span><br/>

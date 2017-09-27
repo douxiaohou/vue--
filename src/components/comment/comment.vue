@@ -48,7 +48,7 @@
 				pageindex:1
 			}	
 		},
-		props:['id'], //作用是用来接收父组件传入过来的id值
+		props:['id'], //作用是用来接收父组件传入过来的id值 this.$route.params 获取的路由参数
 		created(){
 			this.getcomment(this.pageindex);
 		},
@@ -90,7 +90,7 @@
 						this.list = this.list.concat(res.body.message);
 					}) 
 				},
-				//3.0 实现加载更多的方法
+				//3. 实现加载更多的方法
 				getmore(){
 				//1.0 实现this.pageindex值的增加1
 					this.pageindex++;
