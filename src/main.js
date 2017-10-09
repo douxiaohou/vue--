@@ -28,7 +28,11 @@ import newslist from './components/news/newslist.vue';//新闻资讯列表
 import newsinfo from './components/news/newsinfo.vue';// 新闻资讯列表信息
 import photoshare from './components/photoshare/photoshare.vue';// 图片分享列表
 import photoinfos from './components/photoshare/photoinfos.vue';// 图片分享详细信息
-import goodslist from './components/goods/goodslist.vue';// 图片分享详细信息
+import goodslist from './components/goods/goodslist.vue';// 商品购物列表信息
+import goodsinfo from './components/goods/goodsinfo.vue';// 商品购物详细信息
+import goodsdesc from './components/goods/goodsdesc.vue';// 商品购物详细信息
+import goodscomment from './components/goods/goodscomment.vue';// 商品购物评论
+import shopcar from './components/shopcar/shopCar.vue';// 商品购物评论
 
 // 6. 定义路由规则
 var router1 = new vueRouter({
@@ -40,7 +44,11 @@ var router1 = new vueRouter({
 		{path:'/news/newsinfo/:id1',component:newsinfo},
 		{path:'/photo/photoshare/',component:photoshare},
 		{path:'/photo/photoinfo/:imgid',component:photoinfos},
-		{path:'/goods/goodslist/',component:goodslist}
+		{path:'/goods/goodslist/',component:goodslist},
+		{path:'/goods/goodsinfo/:id',component:goodsinfo},
+		{path:'/goods/goodsdesc/:id',component:goodsdesc},
+		{path:'/goods/goodscomment/:id',component:goodscomment},
+		{path:'/shopcar/car/',component:shopcar}
 	]
  });
 

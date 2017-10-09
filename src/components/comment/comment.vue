@@ -32,7 +32,7 @@
 		</div>
 
 		<!--3.0 实现获取更多按钮-->
-		 <mt-button type="danger" size="large" plain @click="getmore">加载更多</mt-button> 
+		 <mt-button type="danger" size="large" plain @click="getmore" v-text="morelist"></mt-button> 
 	</div>
 
 </template>
@@ -45,7 +45,8 @@
 			return {
 				postcontent:'',// 双向数据绑定 获取 输入框的内容
 				list:[], //定义一个数组  保存提交到数据库中的评论数据
-				pageindex:1
+				pageindex:1,
+				morelist:'加载更多'
 			}	
 		},
 		props:['id'], //作用是用来接收父组件传入过来的id值 this.$route.params 获取的路由参数
@@ -70,8 +71,14 @@
 						if(data.status == 0){
 							Toast(data.message);
 						}
+						//3.0 将最新的评论数据追加到评论列表的最顶部
+						this.list = [{
+							"user_name": "匿名用户",
+							"add_time": new Date(),
+							"content": this.postcontent
+						}].concat(this.list);
+						//置空输入框
 						this.postcontent = '';
-						console.log(data)
 					})	
 				},
 				//2.获取数据库中的数据 get请求
@@ -81,8 +88,14 @@
 					// http://182.254.146.100:8899/api/getcomments/13?pageindex=1 获取数据的地址格式
 					var url = common.apidomain+'/api/getcomments/'+this.id+'?pageindex='+pageindex;
 					this.$http.get(url).then(function(res){
-						if(res.body.status != 0 ){
-							Toast(res.body.message);
+						var data = res.body;
+						if(data.status != 0 ){
+							Toast(data.message);
+							return;
+						}
+						// 若是没有评论了  返回一个提示
+						if(data.message == ''){
+							this.morelist='暂无更多评论...';
 							return;
 						}
 						//将message数组中的数据赋值给this.list
@@ -94,7 +107,6 @@
 				getmore(){
 				//1.0 实现this.pageindex值的增加1
 					this.pageindex++;
-					console.log(this.pageindex);
 
 				//2.0 获取当前this.pageindex值对应的分页数据
 					this.getcomment(this.pageindex);

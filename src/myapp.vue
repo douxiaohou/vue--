@@ -17,11 +17,11 @@
 					<span class="mui-tab-label">首页</span>
 				</router-link>
 				<router-link class="mui-tab-item" to="/tabbar-with-chat">
-					<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+					<span class="mui-icon mui-icon-email"></span>
 					<span class="mui-tab-label">会员</span>
 				</router-link>
-				<router-link class="mui-tab-item" to="/shopcar">
-					<span class="mui-icon mui-icon-contact"></span>
+				<router-link class="mui-tab-item" to="/shopcar/car">
+					<span class="mui-icon mui-icon-contact"><span id="shopCount" class="mui-badge">0</span></span>
 					<span class="mui-tab-label">购物车</span>
 				</router-link>
 				<router-link class="mui-tab-item" to="/tabbar-with-map">
@@ -36,7 +36,27 @@
 </template>
 
 <script>
-		// ES6中导出的语法 结构
+	import {setItem,valueObj,getItem} from './common/locoldata.js';
+	// 导入公共对象vm 获取保存在vm对象中的 购物车数据的数量值
+	import {vm,buycount} from './common/vm.js';
+	// 利用 vm.$on() 来注册 buycount这个常量代表的事件
+	vm.$on(buycount,function(count){
+	//1.0 将count值追加到购物车中
+		var badgeobj = document.querySelector('#shopCount');
+		badgeobj.innerText = parseInt(badgeobj.innerText) + count;
+	});
+	// 2.实现页面刷新后 购物车数据不丢失
+	window.onload = function(){
+		var shopCount = document.querySelector('#shopCount');
+		var count = getItem();
+		var scount =0; 
+		for(var i=0;i<count.length;i++){
+			var tem = count[i];
+			 scount+= tem.goodscount
+		}
+		shopCount.innerText = parseInt(shopCount.innerText) + scount;
+	}
+	// ES6中导出的语法 结构
 	export default{
 		data(){		//等价于ES5中的 data:function(){msg:'hello'}
 			return {

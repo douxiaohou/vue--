@@ -1,11 +1,12 @@
 <template lang="html">
     <div id="temp">
         <!-- 轮播图 begin -->
-        <mt-swipe :auto="2000">
+        <!-- <mt-swipe :auto="2000">
             <mt-swipe-item v-for="item in listImg" :key="item.id">
                 <img v-bind:src="item.img">
             </mt-swipe-item>
-        </mt-swipe>
+        </mt-swipe> -->
+        <slider :imgs = "listImg"></slider>
         <!--  菜单 list begin-->
         <div class="mui-content">
                 <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -55,8 +56,12 @@
 <script>
 // 实现api域名的动态绑定 因为在开发中可能会有测试域名 开发域名 和上线域名
 import common from '../../common/common.js';
+import slider from '../../common/slider.vue'
 import { Toast } from 'mint-ui';
 export default {
+    components:{
+        slider
+    },
     data(){
         return {
             listImg : []
@@ -72,6 +77,7 @@ export default {
             var url = common.apidomain+'/api/getlunbo';
             this.$http.get(url).then(function(res){
                 var data = res.body;
+                console.log(data)
                 // 错误处理
                 if (data.status != 0) {
                     Toast(data.message);
@@ -85,18 +91,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-    /* 轮播图 begin  */
-    .mint-swipe{
-        height: 300px;
-    }
-    .mint-swipe-item img{
-        width: 100%;
-        height: 100%
-    }
-    .mint-swipe-item{
-        width: 100%;
-        height: 300px;
-    }
+    
     /* 菜单 list begin */
     .mui-content,.mui-content ul{
         background-color: #fff;
